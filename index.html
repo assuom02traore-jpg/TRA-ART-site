@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRAART | Galerie d'Art en Ligne</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">TRAART</div>
+            <button class="nav-toggle" aria-label="Ouvrir le menu">☰</button>
+            <ul class="nav-links">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#galerie">Galerie</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#" class="cart">Panier (0)</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="accueil">
+        <div class="hero-content">
+            <h1>TRAART — Galerie d'art professionnelle</h1>
+            <h2 class="hero-subtitle">L'art authentique, livré chez vous</h2>
+            <p>Explorez une sélection raffinée de tableaux contemporains et classiques, soigneusement choisis pour leur qualité et leur impact visuel. Commandez en toute confiance, bénéficiez d'un accompagnement personnalisé et d'une livraison premium.</p>
+            <div class="hero-actions">
+                <a href="#galerie" class="btn-primary">Voir la galerie</a>
+                <a href="#contact" class="btn-secondary">Contactez-nous</a>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <section class="features">
+            <div class="feature">
+                <h3>✅ Une sélection unique</h3>
+                <p>Chaque tableau est choisi pour son style, son émotion et sa capacité à transformer un intérieur.</p>
+            </div>
+            <div class="feature">
+                <h3>🛒 Achat simple</h3>
+                <p>Ajoutez au panier en un clic, puis finalisez votre commande via Wave Sénégal.</p>
+            </div>
+            <div class="feature">
+                <h3>📦 Prêt à accrocher</h3>
+                <p>Nos tableaux sont livrés prêts à être exposés, sans surprise.</p>
+            </div>
+        </section>
+
+        <section class="gallery" id="galerie">
+            <h2>Nos tableaux en vedette</h2>
+            <div id="gallery" class="gallery-grid"></div>
+        </section>
+
+        <section class="contact" id="contact">
+            <h2>Contact & commandes</h2>
+            <p>Pour commander rapidement ou poser une question, contactez-nous par téléphone ou email. Nous répondons en général en moins de 24h.</p>
+
+            <div class="contact-grid">
+                <div class="contact-card contact-phone">
+                    <div class="contact-icon">📞</div>
+                    <h3>Appelez-nous</h3>
+                    <p class="phone-number"><a href="tel:+221785521829">+221&nbsp;78&nbsp;552&nbsp;18&nbsp;29</a></p>
+                    <p class="contact-note">Disponible via Wave, WhatsApp & SMS</p>
+                </div>
+
+                <div class="contact-card contact-email">
+                    <div class="contact-icon">✉️</div>
+                    <h3>Écrivez-nous</h3>
+                    <p><a href="mailto:contact@traart.fr">contact@traart.fr</a></p>
+                    <p class="contact-note">Réponse en moins de 24h</p>
+                </div>
+
+                <div class="contact-card contact-location">
+                    <div class="contact-icon">📍</div>
+                    <h3>Localisation</h3>
+                    <p>Dakar, Sénégal</p>
+                    <p class="contact-note">Livraison disponible en Afrique de l'Ouest</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="cart-panel hidden" id="cartPanel" aria-hidden="true">
+        <div class="cart-header">
+            <h2>Mon panier</h2>
+            <button class="close-cart" aria-label="Fermer le panier">×</button>
+        </div>
+        <div class="cart-items" id="cartItems"></div>
+        <div class="cart-footer">
+            <div class="cart-total">Total: <span id="cartTotal">0 FCFA</span></div>
+            <button class="checkout" id="checkoutBtn">Passer à la caisse</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay hidden" id="checkoutModal" aria-hidden="true">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Finaliser la commande</h2>
+                <button class="modal-close" aria-label="Fermer la fenêtre">×</button>
+            </div>
+            <form id="checkoutForm" class="modal-body">
+                <p class="modal-instructions">Complétez les informations ci-dessous pour finaliser votre commande. Le paiement s'effectue via <strong>Wave Sénégal</strong> (vous serez contacté ensuite pour le règlement).</p>
+                <div class="form-row">
+                    <label for="customerName">Nom complet</label>
+                    <input id="customerName" name="name" type="text" required />
+                </div>
+                <div class="form-row">
+                    <label for="customerEmail">Email</label>
+                    <input id="customerEmail" name="email" type="email" required />
+                </div>
+                <div class="form-row">
+                    <label for="customerAddress">Adresse</label>
+                    <textarea id="customerAddress" name="address" rows="3" required></textarea>
+                </div>
+                <div class="order-summary" id="orderSummary"></div>
+                <div class="qr-section" id="qrSection">
+                    <h3>Scanner pour payer</h3>
+                    <p>Utilisez Wave Sénégal pour régler. Scannez le QR ci-dessous :</p>
+                    <img id="qrCode" src="" alt="QR code de paiement Wave" />
+                    <p class="qr-hint">Si l'image ne s'affiche pas, copiez ce code dans Wave : <span id="qrText"></span></p>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="button-secondary" id="cancelCheckout">Annuler</button>
+                    <button type="submit" class="button-primary">Envoyer ma commande</button>
+                </div>
+                <div class="order-confirmation hidden" id="orderConfirmation">
+                    <p>Merci pour votre commande ! Nous avons bien reçu votre demande.</p>
+                    <p>Vous recevrez un email de confirmation sous peu.</p>
+                    <button type="button" class="button-primary" id="closeConfirmation">Fermer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">TRAART</div>
+            <div class="footer-links">
+                <a href="mailto:contact@traart.fr">contact@traart.fr</a> |
+                <a href="tel:+221785521829">+221 78 552 18 29</a>
+            </div>
+            <div class="footer-social">
+                <a href="https://www.instagram.com/traart" target="_blank" aria-label="Instagram"><img src="images/instagram.svg" alt="Instagram" /></a>
+                <a href="https://www.facebook.com/traart" target="_blank" aria-label="Facebook"><img src="images/facebook.svg" alt="Facebook" /></a>
+                <a href="https://wa.me/221785521829" target="_blank" aria-label="WhatsApp"><img src="images/whatsapp.svg" alt="WhatsApp" /></a>
+            </div>
+            <div class="footer-copyright">
+                &copy; 2026 TRAART — Tous droits réservés.
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
